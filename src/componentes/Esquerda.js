@@ -24,6 +24,11 @@ export default function Esquerda() {
         { name: 'memeriagourmet', url: 'assets/img/memeriagourmet.svg' },
     ]
 
+    const posts = [
+        { usuarioName: 'meowed', usuarioUrl: 'assets/img/meowed.svg', imageUrl: 'assets/img/gato-telefone.svg', likeName: 'respondeai', likeUrl: 'assets/img/respondeai.svg', numLikes: '101.523' },
+        { usuarioName: 'barked', usuarioUrl: 'assets/img/barked.svg', imageUrl: 'assets/img/dog.svg', likeName: 'adorable_animals', likeUrl: 'assets/img/adorable_animals.svg', numLikes: '99.159' }
+    ]
+
     function Post(props) {
         return (
             <div class="post">
@@ -38,7 +43,11 @@ export default function Esquerda() {
                 </div>
 
                 <div class="conteudo">
-                    <img src={props.imageUrl} />
+                    {(props.imageUrl.slice(-3) === 'svg' || props.imageUrl.slice(-3) === 'jpg' || props.imageUrl.slice(-3) === 'png') ?
+                        <img src={props.imageUrl} /> :
+                        <video src={props.imageUrl} />
+                        }
+
                 </div>
 
                 <div class="fundo">
@@ -74,9 +83,7 @@ export default function Esquerda() {
             </div>
 
             <div class="posts">
-                <Post usuarioName='meowed' usuarioUrl='assets/img/meowed.svg' imageUrl='assets/img/gato-telefone.svg' likeName='respondeai' likeUrl='assets/img/respondeai.svg' numLikes='101.523' />
-
-                <Post usuarioName='barked' usuarioUrl='assets/img/barked.svg' imageUrl='assets/img/dog.svg' likeName='adorable_animals' likeUrl='assets/img/adorable_animals.svg' numLikes='99.159' />
+                {posts.map(post => <Post usuarioName={post.usuarioName} usuarioUrl={post.usuarioUrl} imageUrl={post.imageUrl} likeName={post.likeName} likeUrl={post.likeUrl} numLikes={post.numLikes} />)}
 
             </div>
         </div>

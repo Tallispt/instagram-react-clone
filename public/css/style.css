@@ -130,6 +130,12 @@ body {
   border-radius: 50%;
 }
 
+.story .imagem video {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
 .story .usuario {
   width: 66px;
   overflow: hidden;
