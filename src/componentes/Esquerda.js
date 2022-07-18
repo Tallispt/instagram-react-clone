@@ -1,17 +1,7 @@
-export default function Esquerda() {
+import React, { useState, Component } from "react"
 
-    function Story(props) {
-        return (
-            <div class="story">
-                <div class="imagem">
-                    <img src={props.url} />
-                </div>
-                <div class="usuario">
-                    {props.name}
-                </div>
-            </div>
-        )
-    }
+export default function Esquerda() {
+    const [name, setName] = useState('heart-outline');
 
     const stories = [
         { name: '9gag', url: 'assets/img/9gag.svg' },
@@ -26,10 +16,29 @@ export default function Esquerda() {
 
     const posts = [
         { usuarioName: 'meowed', usuarioUrl: 'assets/img/meowed.svg', imageUrl: 'assets/img/gato-telefone.svg', likeName: 'respondeai', likeUrl: 'assets/img/respondeai.svg', numLikes: '101.523' },
-        { usuarioName: 'barked', usuarioUrl: 'assets/img/barked.svg', imageUrl: 'assets/img/dog.svg', likeName: 'adorable_animals', likeUrl: 'assets/img/adorable_animals.svg', numLikes: '99.159' }
+        { usuarioName: 'barked', usuarioUrl: 'assets/img/barked.svg', imageUrl: 'assets/img/dog.svg', likeName: 'adorable_animals', likeUrl: 'assets/img/adorable_animals.svg', numLikes: '99.159' },
+        { usuarioName: 'barked', usuarioUrl: 'assets/img/barked.svg', imageUrl: 'assets/video/video.mp4', likeName: 'adorable_animals', likeUrl: 'assets/img/adorable_animals.svg', numLikes: '99.159' }
     ]
 
+    function toggleLiked() {
+        setName(name === 'heart-outline' ? 'heart' : 'heart-outline');
+    }
+
+    function Story(props) {
+        return (
+            <div class="story">
+                <div class="imagem">
+                    <img src={props.url} />
+                </div>
+                <div class="usuario">
+                    {props.name}
+                </div>
+            </div>
+        )
+    }
+
     function Post(props) {
+
         return (
             <div class="post">
                 <div class="topo">
@@ -42,18 +51,19 @@ export default function Esquerda() {
                     </div>
                 </div>
 
-                <div class="conteudo">
+                <div class="conteudo" onDoubleClick={() => {
+                    setName('heart')
+                }}>
                     {(props.imageUrl.slice(-3) === 'svg' || props.imageUrl.slice(-3) === 'jpg' || props.imageUrl.slice(-3) === 'png') ?
                         <img src={props.imageUrl} /> :
-                        <video src={props.imageUrl} />
-                        }
+                        <video controls src={props.imageUrl} />}
 
                 </div>
 
                 <div class="fundo">
                     <div class="acoes">
                         <div>
-                            <ion-icon name="heart-outline"></ion-icon>
+                            <ion-icon name={name} onClick={toggleLiked}></ion-icon>
                             <ion-icon name="chatbubble-outline"></ion-icon>
                             <ion-icon name="paper-plane-outline"></ion-icon>
                         </div>

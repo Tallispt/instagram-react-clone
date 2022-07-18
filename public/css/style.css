@@ -130,12 +130,6 @@ body {
   border-radius: 50%;
 }
 
-.story .imagem video {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-}
-
 .story .usuario {
   width: 66px;
   overflow: hidden;
@@ -190,11 +184,19 @@ body {
   width: 100%;
 }
 
+.post .conteudo video {
+  width: 100%;
+}
+
 .post .fundo .acoes {
   display: flex;
   justify-content: space-between;
   padding: 13px 16px;
   font-size: 24px;
+}
+
+ion-icon[name='heart'] {
+  color: red;
 }
 
 .post .fundo .acoes div:first-child ion-icon {
